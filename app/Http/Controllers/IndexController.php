@@ -28,7 +28,7 @@ class IndexController extends Controller
             $query->where('skill', $request->skill);
         }
 
-        $questions = $query->paginate(15);
+        $questions = $query->paginate(10);
 
         // Get unique subjects and skills for dropdowns
         $subjects = Question::whereNotNull('subject')->distinct()->orderBy('subject', 'asc')->pluck('subject');
