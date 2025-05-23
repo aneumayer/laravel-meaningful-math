@@ -3,11 +3,17 @@ body {
     background-color: #f8f9fa;
     margin: 0;
     padding: 20px;
+    background-image: url('/images/background.jpg');
+    background-repeat: repeat;
+    background-position: top left;
 }
 
 .container {
     max-width: 800px;
     margin: auto;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    background-color: #EBF0F2;
 }
 
 h1 {
@@ -21,6 +27,18 @@ h1 {
 
 .btn {
     margin-top: 10px;
+}
+
+.btn-primary {
+    background-color: #257abd !important; /* Your custom blue */
+    border-color: #257abd !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: #1370b7 !important; /* A darker shade for hover/active */
+    border-color: #1370b7 !important;
 }
 
 .table {

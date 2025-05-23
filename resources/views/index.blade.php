@@ -17,11 +17,11 @@
             @if(request()->has('admin'))
                 <input type="hidden" name="admin" value="1">
             @endif
-            <div class="row">
-                <div class="col-md-3">
+            <div class="row mb-2">
+                <div class="col">
                     <input type="text" name="search" class="form-control" placeholder="Search .." value="{{ request('search') }}">
                 </div>
-                <div class="col-md-2">
+                <div class="col">
                     <select name="grade" class="form-control">
                         <option value="">Select Grade</option>
                         <option value="PK" {{ request('grade') == 'PK' ? 'selected' : '' }}>PK</option>
@@ -34,7 +34,7 @@
                         <option value="6" {{ request('grade') == '6' ? 'selected' : '' }}>6</option>
                     </select>
                 </div>
-                <div class="col-md-3">
+                <div class="col">
                     <select name="subject" class="form-control">
                         <option value="">Select Subject</option>
                         @foreach($subjects as $subject)
@@ -42,7 +42,7 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="col-md-3">
+                <div class="col">
                     <select name="skill" class="form-control">
                         <option value="">Select Skill</option>
                         @foreach($skills as $skill)
@@ -50,9 +50,11 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="col-md-1 d-flex align-items-center">
+            </div>
+            <div class="row justify-content-center mt-3">
+                <div class="col-auto">
                     <button type="submit" class="btn btn-primary mr-2">Search</button>
-                    <a href="{{ request()->has('admin') ? route('index', ['admin']) : route('index') }}" class="btn btn-secondary ml-2">Clear</a>
+                    <a href="{{ request()->has('admin') ? route('index', ['admin' => 1]) : route('index') }}" class="btn btn-secondary">Clear</a>
                 </div>
             </div>
         </form>
