@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-<div class="container mt-5">
+<div class="container">
     <h1>Add New Question</h1>
     <form action="{{ route('store') }}" method="POST">
         @csrf
