@@ -3,8 +3,18 @@
 @section('content')
 <div class="container mt-5">
     <h1>Add New Question</h1>
-    <form action="{{ route('store') }}{{ request()->has('admin') ? '?admin' : '' }}" method="POST">
+    <form action="{{ route('store') }}" method="POST">
         @csrf
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
         @if(request()->has('admin'))
             <input type="hidden" name="admin" value="1">
@@ -21,11 +31,11 @@
         </div>
 
         <div class="form-group">
-            <label>Grade Level</label>
+            <label>Grade</label>
             <div>
                 @foreach(['PK','K','1','2','3','4','5','6','7','8','9','10','11','12'] as $grade)
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="grade_level[]" id="grade_{{ $grade }}" value="{{ $grade }}">
+                        <input class="form-check-input" type="checkbox" name="grade[]" id="grade_{{ $grade }}" value="{{ $grade }}">
                         <label class="form-check-label" for="grade_{{ $grade }}">{{ $grade }}</label>
                     </div>
                 @endforeach

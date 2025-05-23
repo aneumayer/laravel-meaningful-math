@@ -14,10 +14,10 @@ class QuestionRequest extends FormRequest
     public function rules()
     {
         return [
-            'question' => 'required|string|max:255',
-            'answer' => 'required|string|max:255',
-            'grade_level' => 'required|array',
-            'grade_level.*' => 'in:PK,K,1,2,3,4,5,6,7,8,9,10,11,12',
+            'question' => 'required|string',
+            'answer' => 'required|string',
+            'grade' => 'required|array',
+            'grade.*' => 'in:PK,K,1,2,3,4,5,6,7,8,9,10,11,12',
             'subject' => 'required|string|max:100',
             'source' => 'nullable|string|max:255',
             'authorization' => ['required', function ($attribute, $value, $fail) {

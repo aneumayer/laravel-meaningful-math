@@ -7,6 +7,16 @@
         @csrf
         @method('PUT')
 
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         @if(request()->has('admin'))
             <input type="hidden" name="admin" value="1">
         @endif
@@ -22,12 +32,12 @@
         </div>
 
         <div class="form-group">
-            <label for="grade_level">Grade Level</label>
+            <label for="grade">Grade</label>
             <div>
                 @foreach(['PK','K','1','2','3','4','5','6','7','8','9','10','11','12'] as $level)
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="grade_level_{{ $level }}" name="grade_level[]" value="{{ $level }}" {{ in_array($level, old('grade_level', $question->grade_level)) ? 'checked' : '' }}>
-                        <label class="form-check-label" for="grade_level_{{ $level }}">{{ $level }}</label>
+                        <input class="form-check-input" type="checkbox" id="grade_{{ $level }}" name="grade[]" value="{{ $level }}" {{ in_array($level, old('grade', $question->grade)) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="grade_{{ $level }}">{{ $level }}</label>
                     </div>
                 @endforeach
             </div>

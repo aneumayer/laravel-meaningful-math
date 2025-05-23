@@ -15,11 +15,12 @@ return new class extends Migration
             $table->id();
             $table->text('question');
             $table->text('answer');
-            $table->json('grade_level');
-            $table->string('subject');
-            $table->string('source');
+            $table->json('grade');
+            $table->text('subject');
+            $table->text('source');
             $table->timestamps();
         });
+        
     }
 
     /**

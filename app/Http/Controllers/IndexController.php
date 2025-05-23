@@ -16,8 +16,8 @@ class IndexController extends Controller
             $query->where('question', 'like', '%' . $request->search . '%');
         }
 
-        if ($request->filled('grade_level')) {
-            $query->whereJsonContains('grade_level', $request->grade_level);
+        if ($request->filled('grade')) {
+            $query->whereJsonContains('grade', $request->grade);
         }
 
         if ($request->has('subject')) {

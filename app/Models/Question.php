@@ -12,12 +12,12 @@ class Question extends Model
     protected $fillable = [
         'question',
         'answer',
-        'grade_level',
+        'grade',
         'subject',
         'source',
     ];
 
     protected $casts = [
-        'grade_level' => 'array',
+        'grade' => 'array',
     ];
 }

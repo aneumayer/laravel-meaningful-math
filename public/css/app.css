@@ -45,3 +45,9 @@ h1 {
 .alert {
     margin-top: 20px;
 }
+
+.question-label {
+    width: 120px; /* Adjust as needed for your longest label */
+    min-width: 120px;
+    white-space: nowrap;
+}
