@@ -14,13 +14,17 @@
 
     <div class="form-group">
         <label for="authorization">Authorization</label>
-        <input type="text" class="form-control" id="authorization" name="authorization" required>
+        <input type="text" class="form-control" id="authorization" name="authorization" required autocomplete="authorization">
         @error('authorization')
             <div class="text-danger">{{ $message }}</div>
         @enderror
     </div>
 
-    <button type="submit" class="btn btn-danger">Delete</button>
-    <a href="{{ route('index') }}?admin" class="btn btn-secondary">Cancel</a>
+    <button type="submit" class="btn btn-danger">
+        <i class="bi bi-trash"></i> Delete
+    </button>
+    <a href="{{ route('index') }}?admin" class="btn btn-secondary">
+        <i class="bi bi-x-circle"></i> Cancel
+    </a>
 </form>
 @endsection

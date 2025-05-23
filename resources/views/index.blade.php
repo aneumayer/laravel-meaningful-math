@@ -43,19 +43,27 @@
     </div>
     <div class="row justify-content-center mt-3">
         <div class="col-md-2">
-            <button type="submit" class="btn btn-primary w-100">Search</button>
+            <button type="submit" class="btn btn-primary w-100">
+                <i class="bi bi-search"></i> Search
+            </button>
         </div>
         <div class="col-md-2">
-            <a href="{{ request()->has('admin') ? route('index', ['admin' => 1]) : route('index') }}" class="btn btn-secondary w-100">Clear</a>
+            <a href="{{ request()->has('admin') ? route('index', ['admin' => 1]) : route('index') }}" class="btn btn-secondary w-100">
+                <i class="bi bi-x-circle"></i> Clear
+            </a>
         </div>
         <div class="col-md-2">
-            <button type="button" class="btn btn-secondary w-100 d-none d-md-block" onclick="window.print()">Print</button>
+            <button type="button" class="btn btn-secondary w-100 d-none d-md-block" onclick="window.print()">
+                <i class="bi bi-printer"></i> Print
+            </button>
         </div>
     </div>
 </form>
 
 @if(request()->has('admin'))
-    <a href="{{ route('create') }}" class="btn btn-success mb-3">Add Question</a>
+    <a href="{{ route('create') }}" class="btn btn-success mb-3">
+        <i class="bi bi-plus-circle"></i> Add
+    </a>
 @endif
 
 <div id="print-results">
@@ -114,8 +122,12 @@
             @if(request()->has('admin'))
                 <div class="row mt-3">
                     <div class="col-12">
-                        <a href="{{ route('edit', $question->id) }}" class="btn btn-warning">Edit</a>
-                        <a href="{{ route('delete', $question->id) }}" class="btn btn-danger">Delete</a>
+                        <a href="{{ route('edit', $question->id) }}" class="btn btn-warning">
+                            <i class="bi bi-pencil-square"></i> Edit
+                        </a>
+                        <a href="{{ route('delete', $question->id) }}" class="btn btn-danger">
+                            <i class="bi bi-trash"></i> Delete
+                        </a>
                     </div>
                 </div>
             @endif
