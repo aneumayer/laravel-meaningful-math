@@ -42,9 +42,14 @@
         </div>
     </div>
     <div class="row justify-content-center mt-3">
-        <div class="col-auto">
-            <button type="submit" class="btn btn-primary mr-2">Search</button>
-            <a href="{{ request()->has('admin') ? route('index', ['admin' => 1]) : route('index') }}" class="btn btn-secondary">Clear</a>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary w-100">Search</button>
+        </div>
+        <div class="col-md-2">
+            <a href="{{ request()->has('admin') ? route('index', ['admin' => 1]) : route('index') }}" class="btn btn-secondary w-100">Clear</a>
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-secondary w-100" onclick="window.print()">Print</button>
         </div>
     </div>
 </form>
@@ -53,6 +58,7 @@
     <a href="{{ route('create') }}" class="btn btn-success mb-3">Add Question</a>
 @endif
 
+<div id="print-results">
 @foreach($questions as $question)
     <div class="card mb-4">
         <div class="card-body">
@@ -116,6 +122,7 @@
         </div>
     </div>
 @endforeach
+</div>
 
 {{ $questions->appends(request()->has('admin') ? ['admin' => 1] : [])->links() }}
 @endsection

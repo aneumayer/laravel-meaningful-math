@@ -69,3 +69,18 @@ h1 {
     min-width: 120px;
     white-space: nowrap;
 }
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #print-results, #print-results * {
+        visibility: visible;
+    }
+    #print-results {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+}
