@@ -9,11 +9,11 @@
     @endif
     <div class="row mb-2">
         <div class="col">
-            <input type="text" name="search" class="form-control" placeholder="Search .." value="{{ request('search') }}">
+            <input type="text" name="search" class="form-control" placeholder="Term ..." value="{{ request('search') }}">
         </div>
         <div class="col">
             <select name="grade" class="form-control">
-                <option value="">Select Grade</option>
+                <option value="">Grade</option>
                 <option value="PK" {{ request('grade') == 'PK' ? 'selected' : '' }}>PK</option>
                 <option value="K" {{ request('grade') == 'K' ? 'selected' : '' }}>K</option>
                 <option value="1" {{ request('grade') == '1' ? 'selected' : '' }}>1</option>
@@ -26,7 +26,7 @@
         </div>
         <div class="col">
             <select name="subject" class="form-control">
-                <option value="">Select Subject</option>
+                <option value="">Subject</option>
                 @foreach($subjects as $subject)
                     <option value="{{ $subject }}" {{ request('subject') == $subject ? 'selected' : '' }}>{{ $subject }}</option>
                 @endforeach
@@ -34,7 +34,7 @@
         </div>
         <div class="col">
             <select name="skill" class="form-control">
-                <option value="">Select Skill</option>
+                <option value="">Skill</option>
                 @foreach($skills as $skill)
                     <option value="{{ $skill }}" {{ request('skill') == $skill ? 'selected' : '' }}>{{ $skill }}</option>
                 @endforeach
@@ -49,7 +49,7 @@
             <a href="{{ request()->has('admin') ? route('index', ['admin' => 1]) : route('index') }}" class="btn btn-secondary w-100">Clear</a>
         </div>
         <div class="col-md-2">
-            <button type="button" class="btn btn-secondary w-100" onclick="window.print()">Print</button>
+            <button type="button" class="btn btn-secondary w-100 d-none d-md-block" onclick="window.print()">Print</button>
         </div>
     </div>
 </form>
