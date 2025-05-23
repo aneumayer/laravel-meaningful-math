@@ -14,7 +14,9 @@ class Question extends Model
         'answer',
         'grade',
         'subject',
+        'skill',
         'source',
+        'book'
     ];
 
     protected $casts = [

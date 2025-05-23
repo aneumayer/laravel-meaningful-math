@@ -11,14 +11,14 @@
 
     @section('content')
     <div class="container">
-        <h1>Search Questions</h1>
+        <h1>Filter the Word Problems</h1>
 
         <form method="GET" action="{{ route('index') }}" class="mb-4">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <input type="text" name="search" class="form-control" placeholder="Search .." value="{{ request('search') }}">
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <select name="grade" class="form-control">
                         <option value="">Select Grade</option>
                         <option value="PK" {{ request('grade') == 'PK' ? 'selected' : '' }}>PK</option>
@@ -29,19 +29,29 @@
                         <option value="4" {{ request('grade') == '4' ? 'selected' : '' }}>4</option>
                         <option value="5" {{ request('grade') == '5' ? 'selected' : '' }}>5</option>
                         <option value="6" {{ request('grade') == '6' ? 'selected' : '' }}>6</option>
-                        <option value="7" {{ request('grade') == '7' ? 'selected' : '' }}>7</option>
-                        <option value="8" {{ request('grade') == '8' ? 'selected' : '' }}>8</option>
-                        <option value="9" {{ request('grade') == '9' ? 'selected' : '' }}>9</option>
-                        <option value="10" {{ request('grade') == '10' ? 'selected' : '' }}>10</option>
-                        <option value="11" {{ request('grade') == '11' ? 'selected' : '' }}>11</option>
-                        <option value="12" {{ request('grade') == '12' ? 'selected' : '' }}>12</option>
                     </select>
                 </div>
-                <div class="col-md-4">
-                    <input type="text" name="subject" class="form-control" placeholder="Subject" value="{{ request('subject') }}">
+                <div class="col-md-3">
+                    <select name="subject" class="form-control">
+                        <option value="">Select Subject</option>
+                        @foreach($subjects as $subject)
+                            <option value="{{ $subject }}" {{ request('subject') == $subject ? 'selected' : '' }}>{{ $subject }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select name="skill" class="form-control">
+                        <option value="">Select Skill</option>
+                        @foreach($skills as $skill)
+                            <option value="{{ $skill }}" {{ request('skill') == $skill ? 'selected' : '' }}>{{ $skill }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-1 d-flex align-items-center">
+                    <button type="submit" class="btn btn-primary mr-2">Search</button>
+                    <a href="{{ route('index') }}" class="btn btn-secondary ml-2">Clear</a>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary mt-3">Search</button>
         </form>
 
         @if(request()->has('admin'))
@@ -51,26 +61,55 @@
         @foreach($questions as $question)
             <div class="card mb-4">
                 <div class="card-body">
+                    @if(!empty($question->question))
                     <div class="row mb-2">
                         <div class="col-auto font-weight-bold question-label">Question:</div>
                         <div class="col">{{ $question->question }}</div>
                     </div>
+                    @endif
+
+                    @if(!empty($question->answer))
                     <div class="row mb-2">
                         <div class="col-auto font-weight-bold question-label">Answer:</div>
                         <div class="col">{{ $question->answer }}</div>
                     </div>
+                    @endif
+
+                    @if(!empty($question->grade))
                     <div class="row mb-2">
                         <div class="col-auto font-weight-bold question-label">Grade:</div>
                         <div class="col">{{ is_array($question->grade) ? implode(', ', $question->grade) : $question->grade }}</div>
                     </div>
+                    @endif
+
+                    @if(!empty($question->subject))
                     <div class="row mb-2">
                         <div class="col-auto font-weight-bold question-label">Subject:</div>
                         <div class="col">{{ $question->subject }}</div>
                     </div>
+                    @endif
+
+                    @if(!empty($question->skill))
+                    <div class="row mb-2">
+                        <div class="col-auto font-weight-bold question-label">Skill:</div>
+                        <div class="col">{{ $question->skill }}</div>
+                    </div>
+                    @endif
+
+                    @if(!empty($question->source))
                     <div class="row mb-2">
                         <div class="col-auto font-weight-bold question-label">Source:</div>
                         <div class="col">{{ $question->source }}</div>
                     </div>
+                    @endif
+
+                    @if(!empty($question->book))
+                    <div class="row mb-2">
+                        <div class="col-auto font-weight-bold question-label">Book Recommendation:</div>
+                        <div class="col">{{ $question->book }}</div>
+                    </div>
+                    @endif
+
                     @if(request()->has('admin'))
                         <div class="row mt-3">
                             <div class="col-12">

@@ -20,12 +20,20 @@ class IndexController extends Controller
             $query->whereJsonContains('grade', $request->grade);
         }
 
-        if ($request->has('subject')) {
-            $query->where('subject', 'like', '%' . $request->subject . '%');
+        if ($request->filled('subject')) {
+            $query->where('subject', $request->subject);
+        }
+
+        if ($request->filled('skill')) {
+            $query->where('skill', $request->skill);
         }
 
         $questions = $query->paginate(15);
 
-        return view('index', compact('questions'));
+        // Get unique subjects and skills for dropdowns
+        $subjects = Question::whereNotNull('subject')->distinct()->pluck('subject');
+        $skills = Question::whereNotNull('skill')->distinct()->pluck('skill');
+
+        return view('index', compact('questions', 'subjects', 'skills'));
     }
 }

@@ -34,9 +34,13 @@
         <div class="form-group">
             <label for="grade">Grade</label>
             <div>
-                @foreach(['PK','K','1','2','3','4','5','6','7','8','9','10','11','12'] as $level)
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="select_all_grades">
+                    <label class="form-check-label" for="select_all_grades"><strong>Select All</strong></label>
+                </div>
+                @foreach(['PK','K','1','2','3','4','5','6'] as $level)
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="grade_{{ $level }}" name="grade[]" value="{{ $level }}" {{ in_array($level, old('grade', $question->grade)) ? 'checked' : '' }}>
+                        <input class="form-check-input grade-checkbox" type="checkbox" id="grade_{{ $level }}" name="grade[]" value="{{ $level }}" {{ in_array($level, old('grade', $question->grade)) ? 'checked' : '' }}>
                         <label class="form-check-label" for="grade_{{ $level }}">{{ $level }}</label>
                     </div>
                 @endforeach
@@ -49,8 +53,18 @@
         </div>
 
         <div class="form-group">
+            <label for="skill">Skill</label>
+            <input type="text" class="form-control" id="skill" name="skill" value="{{ old('skill', $question->skill) }}">
+        </div>
+
+        <div class="form-group">
             <label for="source">Source</label>
             <input type="text" class="form-control" id="source" name="source" value="{{ old('source', $question->source) }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="book">Book Recommendation</label>
+            <input type="text" class="form-control" id="book" name="book" value="{{ old('book', $question->book) }}">
         </div>
 
         <div class="form-group">
@@ -65,4 +79,11 @@
         <a href="{{ route('index') }}?admin" class="btn btn-secondary">Cancel</a>
     </form>
 </div>
+
+<script>
+document.getElementById('select_all_grades').addEventListener('change', function() {
+    const checked = this.checked;
+    document.querySelectorAll('.grade-checkbox').forEach(cb => cb.checked = checked);
+});
+</script>
 @endsection
