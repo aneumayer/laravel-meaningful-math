@@ -12,8 +12,13 @@ class IndexController extends Controller
     {
         $query = Question::query();
 
-        if ($request->has('search')) {
-            $query->where('question', 'like', '%' . $request->search . '%');
+        if ($request->filled('search')) {
+            $query->where(function($q) use ($request) {
+                $q->where('question', 'like', '%' . $request->search . '%')
+                  ->orWhere('answer', 'like', '%' . $request->search . '%')
+                  ->orWhere('source', 'like', '%' . $request->search . '%')
+                  ->orWhere('book', 'like', '%' . $request->search . '%');
+            });
         }
 
         if ($request->filled('grade')) {
