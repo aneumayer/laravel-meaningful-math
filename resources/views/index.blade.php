@@ -14,6 +14,9 @@
         <h1>Filter the Word Problems</h1>
 
         <form method="GET" action="{{ route('index') }}" class="mb-4">
+            @if(request()->has('admin'))
+                <input type="hidden" name="admin" value="1">
+            @endif
             <div class="row">
                 <div class="col-md-3">
                     <input type="text" name="search" class="form-control" placeholder="Search .." value="{{ request('search') }}">
@@ -49,7 +52,7 @@
                 </div>
                 <div class="col-md-1 d-flex align-items-center">
                     <button type="submit" class="btn btn-primary mr-2">Search</button>
-                    <a href="{{ route('index') }}" class="btn btn-secondary ml-2">Clear</a>
+                    <a href="{{ request()->has('admin') ? route('index', ['admin']) : route('index') }}" class="btn btn-secondary ml-2">Clear</a>
                 </div>
             </div>
         </form>
