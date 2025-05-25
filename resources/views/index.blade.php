@@ -1,7 +1,7 @@
 @extends('app')
 
 @section('content')
-<h1>Filter the Word Problems</h1>
+<h1>Meaningful Math</h1>
 
 <form method="GET" action="{{ route('index') }}" class="mb-4">
     @if(request()->has('admin'))
