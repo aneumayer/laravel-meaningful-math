@@ -9,11 +9,11 @@
     @endif
     <div class="row mb-2">
         <div class="col-12 col-md">
-            <input type="text" name="search" class="form-control" placeholder="Term ..." value="{{ request('search') }}">
+            <input type="text" name="search" class="form-control" placeholder="Search Term ..." value="{{ request('search') }}">
         </div>
         <div class="col-12 col-md">
             <select name="grade" class="form-control">
-                <option value="">Grade</option>
+                <option value="">Select Grade</option>
                 <option value="PK" {{ request('grade') == 'PK' ? 'selected' : '' }}>PK</option>
                 <option value="K" {{ request('grade') == 'K' ? 'selected' : '' }}>K</option>
                 <option value="1" {{ request('grade') == '1' ? 'selected' : '' }}>1</option>
@@ -26,7 +26,7 @@
         </div>
         <div class="col-12 col-md">
             <select name="subject" class="form-control">
-                <option value="">Subject</option>
+                <option value="">Select Subject</option>
                 @foreach($subjects as $subject)
                     <option value="{{ $subject }}" {{ request('subject') == $subject ? 'selected' : '' }}>{{ $subject }}</option>
                 @endforeach
@@ -34,7 +34,7 @@
         </div>
         <div class="col-12 col-md">
             <select name="skill" class="form-control">
-                <option value="">Skill</option>
+                <option value="">Select Skill</option>
                 @foreach($skills as $skill)
                     <option value="{{ $skill }}" {{ request('skill') == $skill ? 'selected' : '' }}>{{ $skill }}</option>
                 @endforeach
