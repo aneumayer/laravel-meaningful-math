@@ -8,10 +8,10 @@
         <input type="hidden" name="admin" value="1">
     @endif
     <div class="row mb-2">
-        <div class="col">
+        <div class="col-12 col-md">
             <input type="text" name="search" class="form-control" placeholder="Term ..." value="{{ request('search') }}">
         </div>
-        <div class="col">
+        <div class="col-12 col-md">
             <select name="grade" class="form-control">
                 <option value="">Grade</option>
                 <option value="PK" {{ request('grade') == 'PK' ? 'selected' : '' }}>PK</option>
@@ -24,7 +24,7 @@
                 <option value="6" {{ request('grade') == '6' ? 'selected' : '' }}>6</option>
             </select>
         </div>
-        <div class="col">
+        <div class="col-12 col-md">
             <select name="subject" class="form-control">
                 <option value="">Subject</option>
                 @foreach($subjects as $subject)
@@ -32,7 +32,7 @@
                 @endforeach
             </select>
         </div>
-        <div class="col">
+        <div class="col-12 col-md">
             <select name="skill" class="form-control">
                 <option value="">Skill</option>
                 @foreach($skills as $skill)
