@@ -12,7 +12,7 @@ class DestroyController extends Controller
     {
         $request->validate([
             'authorization' => ['required', function ($attribute, $value, $fail) {
-                if ($value !== env('AUTHORIZATION_CODE')) {
+                if ($value !== config('services.math.auth')) {
                     $fail('The authorization code is incorrect.');
                 }
             }],

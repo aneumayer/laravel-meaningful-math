@@ -23,7 +23,7 @@ class QuestionRequest extends FormRequest
             'source'   => 'nullable|string',
             'book'     => 'nullable|string',
             'authorization' => ['required', function ($attribute, $value, $fail) {
-                if ($value !== env('AUTHORIZATION_CODE')) {
+                if ($value !== config('services.math.auth')) {
                     $fail('The authorization code is incorrect.');
                 }
             }],

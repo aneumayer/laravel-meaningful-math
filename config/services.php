@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'math' => [
+        'auth' => env('AUTHORIZATION_CODE'),
+        'per_page' => env('RESULTS_PER_PAGE', 10)
+    ]
+
 ];

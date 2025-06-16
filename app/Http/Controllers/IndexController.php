@@ -33,7 +33,7 @@ class IndexController extends Controller
             $query->where('skill', $request->skill);
         }
 
-        $questions = $query->paginate(env('RESULTS_PER_PAGE', 10));
+        $questions = $query->paginate(config('services.math.per_page'));
 
         // Get unique subjects and skills for dropdowns
         $subjects = Question::whereNotNull('subject')->distinct()->orderBy('subject', 'asc')->pluck('subject');
