@@ -21,12 +21,7 @@ class QuestionRequest extends FormRequest
             'subject'  => 'required|string|max:100',
             'skill'    => 'nullable|string',
             'source'   => 'nullable|string',
-            'book'     => 'nullable|string',
-            'authorization' => ['required', function ($attribute, $value, $fail) {
-                if ($value !== config('services.math.auth')) {
-                    $fail('The authorization code is incorrect.');
-                }
-            }],
+            'book'     => 'nullable|string'
         ];
     }
 }

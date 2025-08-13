@@ -10,13 +10,6 @@ class DestroyController extends Controller
 {
     public function __invoke(Request $request, Question $question)
     {
-        $request->validate([
-            'authorization' => ['required', function ($attribute, $value, $fail) {
-                if ($value !== config('services.math.auth')) {
-                    $fail('The authorization code is incorrect.');
-                }
-            }],
-        ]);
         $question->delete();
         return redirect()->route('index', ['admin'])->with('success', 'Question deleted successfully.');
     }

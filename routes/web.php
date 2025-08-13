@@ -9,6 +9,9 @@ Route::get('/{question}/delete', App\Http\Controllers\DeleteController::class)->
 
 // API Calls
 Route::get('/',              App\Http\Controllers\IndexController::class  )->name('index');
-Route::post('/',             App\Http\Controllers\StoreController::class  )->name('store');
-Route::put('/{question}',    App\Http\Controllers\UpdateController::class )->name('update');
-Route::delete('/{question}', App\Http\Controllers\DestroyController::class)->name('destroy');
+// Restricted by auth code
+Route::middleware(App\Http\Middleware\MathAuthMiddleware::class)->group(function () {
+    Route::post('/',             App\Http\Controllers\StoreController::class  )->name('store');
+    Route::put('/{question}',    App\Http\Controllers\UpdateController::class )->name('update');
+    Route::delete('/{question}', App\Http\Controllers\DestroyController::class)->name('destroy');
+});
