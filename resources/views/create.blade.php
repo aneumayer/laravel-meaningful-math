@@ -62,12 +62,14 @@
         <input type="text" class="form-control" id="book" name="book">
     </div>
 
-    <button type="submit" class="btn btn-success">
-        <i class="bi bi-plus-circle"></i> Add
-    </button>
-    <a href="{{ route('index') }}?admin" class="btn btn-secondary">
-        <i class="bi bi-x-circle"></i> Cancel
-    </a>
+    <div class="text-center mt-4">
+        <button type="submit" class="btn btn-success mx-1">
+            <i class="bi bi-plus-circle"></i> Add
+        </button>
+        <a href="{{ route('index') }}?admin" class="btn btn-secondary mx-1">
+            <i class="bi bi-x-circle"></i> Cancel
+        </a>
+    </div>
 </form>
 
 <script>

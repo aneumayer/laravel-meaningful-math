@@ -54,14 +54,15 @@
                 <i class="bi bi-printer"></i> Print
             </button>
         </div>
+        @role('admin')
+            <div class="col-md-2">
+                <a href="{{ route('create') }}" class="btn btn-success w-100">
+                    <i class="bi bi-plus-circle"></i> Add
+                </a>
+            </div>
+        @endrole
     </div>
 </form>
-
-@role('admin')
-    <a href="{{ route('create') }}" class="btn btn-success mb-3">
-        <i class="bi bi-plus-circle"></i> Add
-    </a>
-@endrole
 
 <div id="print-results">
 @foreach($questions as $question)
@@ -117,12 +118,12 @@
             @endif
 
             @role('admin')
-                <div class="row mt-3">
+                <div class="row text-center mt-3">
                     <div class="col-12">
-                        <a href="{{ route('edit', $question->id) }}" class="btn btn-warning">
+                        <a href="{{ route('edit', $question->id) }}" class="btn btn-warning mx-1">
                             <i class="bi bi-pencil-square"></i> Edit
                         </a>
-                        <a href="{{ route('delete', $question->id) }}" class="btn btn-danger">
+                        <a href="{{ route('delete', $question->id) }}" class="btn btn-danger mx-1">
                             <i class="bi bi-trash"></i> Delete
                         </a>
                     </div>
