@@ -18,9 +18,15 @@ Route::get('/',              App\Http\Controllers\IndexController::class  )->nam
 // Restricted by auth code
 Route::middleware(['role:admin'])->group(function () {
     // Views
-    Route::get('create',            App\Http\Controllers\CreateController::class)->name('create');
-    Route::get('{question}/edit',   App\Http\Controllers\EditController::class  )->name('edit');
-    Route::get('{question}/delete', App\Http\Controllers\DeleteController::class)->name('delete');
+    Route::view('create', 'create')->name('create');
+    Route::get('{question}/edit', function ($question) {
+        $question = \App\Models\Question::findOrFail($question);
+        return view('edit', compact('question'));
+    })->name('edit');
+    Route::get('{question}/delete', function ($question) {
+        $question = \App\Models\Question::findOrFail($question);
+        return view('delete', compact('question'));
+    })->name('delete');
 
     // Actions
     Route::post('',             App\Http\Controllers\StoreController::class  )->name('store');
