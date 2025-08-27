@@ -39,6 +39,13 @@
         </div>
     </div>
     <div class="row justify-content-center mt-3">
+        @role('admin')
+            <div class="col-md-2">
+                <a href="{{ route('create') }}" class="btn btn-success w-100">
+                    <i class="bi bi-plus-circle"></i> Add
+                </a>
+            </div>
+        @endrole
         <div class="col-md-2">
             <button type="submit" class="btn btn-primary w-100">
                 <i class="bi bi-search"></i> Search
@@ -54,13 +61,6 @@
                 <i class="bi bi-printer"></i> Print
             </button>
         </div>
-        @role('admin')
-            <div class="col-md-2">
-                <a href="{{ route('create') }}" class="btn btn-success w-100">
-                    <i class="bi bi-plus-circle"></i> Add
-                </a>
-            </div>
-        @endrole
     </div>
 </form>
 
