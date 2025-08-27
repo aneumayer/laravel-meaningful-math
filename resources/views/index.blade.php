@@ -4,9 +4,6 @@
 <h1>Meaningful Math</h1>
 
 <form method="GET" action="{{ route('index') }}" class="mb-4">
-    @if(request()->has('admin'))
-        <input type="hidden" name="admin" value="1">
-    @endif
     <div class="row mb-2">
         <div class="col-12 col-md">
             <input type="text" name="search" class="form-control" placeholder="Search Term ..." value="{{ request('search') }}">
@@ -48,7 +45,7 @@
             </button>
         </div>
         <div class="col-md-2">
-            <a href="{{ request()->has('admin') ? route('index', ['admin' => 1]) : route('index') }}" class="btn btn-secondary w-100">
+            <a href="{{ route('index') }}" class="btn btn-secondary w-100">
                 <i class="bi bi-x-circle"></i> Clear
             </a>
         </div>
@@ -60,11 +57,11 @@
     </div>
 </form>
 
-@if(request()->has('admin'))
+@role('admin')
     <a href="{{ route('create') }}" class="btn btn-success mb-3">
         <i class="bi bi-plus-circle"></i> Add
     </a>
-@endif
+@endrole
 
 <div id="print-results">
 @foreach($questions as $question)
@@ -119,7 +116,7 @@
             </div>
             @endif
 
-            @if(request()->has('admin'))
+            @role('admin')
                 <div class="row mt-3">
                     <div class="col-12">
                         <a href="{{ route('edit', $question->id) }}" class="btn btn-warning">
@@ -130,11 +127,11 @@
                         </a>
                     </div>
                 </div>
-            @endif
+            @endrole
         </div>
     </div>
 @endforeach
 </div>
 
-{{ $questions->appends(request()->has('admin') ? ['admin' => 1] : [])->links() }}
+{{ $questions->links() }}
 @endsection

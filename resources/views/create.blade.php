@@ -15,10 +15,6 @@
         </div>
     @endif
 
-    @if(request()->has('admin'))
-        <input type="hidden" name="admin" value="1">
-    @endif
-
     <div class="form-group">
         <label for="question">Question</label>
         <textarea class="form-control" id="question" name="question" required></textarea>
@@ -64,14 +60,6 @@
     <div class="form-group">
         <label for="book">Book Recommendation</label>
         <input type="text" class="form-control" id="book" name="book">
-    </div>
-
-    <div class="form-group">
-        <label for="authorization">Authorization</label>
-        <input type="text" class="form-control" id="authorization" name="authorization" required autocomplete="authorization">
-        @error('authorization')
-            <div class="text-danger">{{ $message }}</div>
-        @enderror
     </div>
 
     <button type="submit" class="btn btn-success">

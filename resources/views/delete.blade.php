@@ -4,13 +4,10 @@
 <h1>Delete Question</h1>
 <p>Are you sure you want to delete the question: <strong>{{ $question->question }}</strong>?</p>
 
-<form action="{{ route('destroy', $question->id) }}{{ request()->has('admin') ? '?admin' : '' }}" method="POST">
+<form action="{{ route('destroy', $question->id) }}" method="POST">
     @csrf
     @method('DELETE')
 
-    @if(request()->has('admin'))
-        <input type="hidden" name="admin" value="1">
-    @endif
 
     <div class="form-group">
         <label for="authorization">Authorization</label>

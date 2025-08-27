@@ -2,11 +2,27 @@
 
 ## Installation
 
-Create a new .env File from the .env.example and set the AUTHORIZATION_CODE to use for admin operations.
-
-Then run the commands:
+Run the commands:
 
 ```shell
 composer install
 php artisan migrate
+```
+
+## Admin user creation
+
+Create a new admin user with a password:
+
+```shell
+php artisan tinker
+```
+
+```php
+$user = \App\Models\User::create([
+    'name' => 'Admin User',
+    'email' => 'admin@example.com',
+    'password' => bcrypt('yourpassword'),
+]);
+Spatie\Permission\Models\Role::create(['name' => 'admin']);
+$user->syncRoles(['admin']);
 ```

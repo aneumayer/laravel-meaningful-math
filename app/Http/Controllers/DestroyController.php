@@ -11,6 +11,6 @@ class DestroyController extends Controller
     public function __invoke(Request $request, Question $question)
     {
         $question->delete();
-        return redirect()->route('index', ['admin'])->with('success', 'Question deleted successfully.');
+        return redirect()->route('index')->with('success', 'Question deleted successfully.');
     }
 }

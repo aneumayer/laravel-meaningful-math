@@ -11,6 +11,6 @@ class UpdateController extends Controller
     public function __invoke(QuestionRequest $request, Question $question)
     {
         $question->update($request->validated());
-        return redirect()->route('index', ['admin'])->with('success', 'Question updated successfully.');
+        return redirect()->route('index')->with('success', 'Question updated successfully.');
     }
 }

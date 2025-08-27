@@ -11,6 +11,6 @@ class StoreController extends Controller
     public function __invoke(QuestionRequest $request)
     {
         Question::create($request->validated());
-        return redirect()->route('index', ['admin'])->with('success', 'Question added successfully.');
+        return redirect()->route('index')->with('success', 'Question added successfully.');
     }
 }
