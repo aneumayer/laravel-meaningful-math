@@ -4,7 +4,6 @@
     <div class="container mt-5 mb-5" style="max-width: 400px;">
         <div class="card shadow">
             <div class="card-body">
-                <h3 class="card-title mb-4 text-center">Login</h3>
 
                 @if (session('status'))
                     <div class="alert alert-success mb-3">
@@ -15,7 +14,6 @@
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
 
-                    <!-- Email Address -->
                     <div class="mb-3">
                         <label for="email" class="form-label">{{ __('Email') }}</label>
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
@@ -25,7 +23,6 @@
                         @enderror
                     </div>
 
-                    <!-- Password -->
                     <div class="mb-3">
                         <label for="password" class="form-label">{{ __('Password') }}</label>
                         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
@@ -35,7 +32,6 @@
                         @enderror
                     </div>
 
-                    <!-- Remember Me -->
                     <div class="mb-3 form-check">
                         <input type="checkbox" class="form-check-input" id="remember_me" name="remember">
                         <label class="form-check-label" for="remember_me">{{ __('Remember me') }}</label>
@@ -49,7 +45,7 @@
                         @endif
 
                         <button type="submit" class="btn btn-primary mx-1">
-                            <i class="bi bi-box-arrow-in-right"></i> {{ __('Log in') }}
+                            <i class="bi bi-box-arrow-in-right"></i> Log In
                         </button>
                         <a href="{{ route('index') }}?admin" class="btn btn-secondary mx-1">
                             <i class="bi bi-x-circle"></i> Cancel

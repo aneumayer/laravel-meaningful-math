@@ -34,7 +34,6 @@
                     <label class="form-check-label" for="grade_{{ $grade }}">{{ $grade }}</label>
                 </div>
             @endforeach
-            <div class="w-100"></div> <!-- Forces next item to new line -->
             <div class="form-check mt-2">
                 <input class="form-check-input" type="checkbox" id="select_all_grades">
                 <label class="form-check-label" for="select_all_grades"><strong>Select All</strong></label>

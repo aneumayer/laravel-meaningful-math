@@ -11,14 +11,9 @@
         <div class="col-12 col-md">
             <select name="grade" class="form-control">
                 <option value="">Select Grade</option>
-                <option value="PK" {{ request('grade') == 'PK' ? 'selected' : '' }}>PK</option>
-                <option value="K" {{ request('grade') == 'K' ? 'selected' : '' }}>K</option>
-                <option value="1" {{ request('grade') == '1' ? 'selected' : '' }}>1</option>
-                <option value="2" {{ request('grade') == '2' ? 'selected' : '' }}>2</option>
-                <option value="3" {{ request('grade') == '3' ? 'selected' : '' }}>3</option>
-                <option value="4" {{ request('grade') == '4' ? 'selected' : '' }}>4</option>
-                <option value="5" {{ request('grade') == '5' ? 'selected' : '' }}>5</option>
-                <option value="6" {{ request('grade') == '6' ? 'selected' : '' }}>6</option>
+                @foreach(['PK','K','1','2','3','4','5','6'] as $grade)
+                    <option value="{{ $grade }}" {{ request('grade') == $grade ? 'selected' : '' }}>{{ $grade }}</option>
+                @endforeach
             </select>
         </div>
         <div class="col-12 col-md">
