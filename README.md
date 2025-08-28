@@ -23,6 +23,4 @@ $user = \App\Models\User::create([
     'email' => 'admin@example.com',
     'password' => bcrypt('yourpassword'),
 ]);
-Spatie\Permission\Models\Role::create(['name' => 'admin']);
-$user->syncRoles(['admin']);
 ```

@@ -22,7 +22,7 @@ Route::view('login', 'login')->name('login');
 Route::post('login', LoginController::class);
 
 // Restricted by auth
-Route::middleware(['role:admin'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     // Views
     Route::view('create',     'create')->name('create');
     Route::get('{id}/edit',   function ($id) {

@@ -34,13 +34,13 @@
         </div>
     </div>
     <div class="row justify-content-center mt-3">
-        @role('admin')
+        @auth
             <div class="col-md-2">
                 <a href="{{ route('create') }}" class="btn btn-success w-100">
                     <i class="bi bi-plus-circle"></i> Add
                 </a>
             </div>
-        @endrole
+        @endauth
         <div class="col-md-2">
             <button type="submit" class="btn btn-primary w-100">
                 <i class="bi bi-search"></i> Search
@@ -112,7 +112,7 @@
             </div>
             @endif
 
-            @role('admin')
+            @auth
                 <div class="row text-center mt-3">
                     <div class="col-12">
                         <a href="{{ route('edit', $question->id) }}" class="btn btn-warning mx-1">
@@ -123,7 +123,7 @@
                         </a>
                     </div>
                 </div>
-            @endrole
+            @endauth
         </div>
     </div>
 @endforeach
