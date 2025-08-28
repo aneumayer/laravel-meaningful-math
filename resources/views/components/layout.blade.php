@@ -24,7 +24,7 @@
     </div>
     <div class="container p-4">
         @if ($title)
-            <h1 class="mb-4">{{ $title }}</h1>
+            <h1 class="mb-4 text-center">{{ $title }}</h1>
         @endif
         @if (session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">

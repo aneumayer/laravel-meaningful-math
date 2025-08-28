@@ -16,19 +16,6 @@ body {
     background-color: #EBF0F2;
 }
 
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-.btn {
-    margin-top: 10px;
-}
-
 .btn-primary {
     background-color: #257abd !important; /* Your custom blue */
     border-color: #257abd !important;
@@ -39,35 +26,6 @@ h1 {
 .btn-primary:active {
     background-color: #1370b7 !important; /* A darker shade for hover/active */
     border-color: #1370b7 !important;
-}
-
-.table {
-    width: 100%;
-    margin-top: 20px;
-}
-
-.table th, .table td {
-    padding: 10px;
-    text-align: left;
-}
-
-.table th {
-    background-color: #007bff;
-    color: white;
-}
-
-.table tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-.alert {
-    margin-top: 20px;
-}
-
-.question-label {
-    width: 120px; /* Adjust as needed for your longest label */
-    min-width: 120px;
-    white-space: nowrap;
 }
 
 @media print {
