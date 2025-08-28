@@ -11,7 +11,6 @@ use App\Http\Controllers\Question\{
     StoreController,
     UpdateController
 };
-use \App\Models\Question;
 use Illuminate\Support\Facades\Route;
 
 // Views
@@ -26,10 +25,10 @@ Route::middleware(['auth'])->group(function () {
     // Views
     Route::view('create',     'create')->name('create');
     Route::get('{id}/edit',   function ($id) {
-        return view('edit',   ['question' => Question::findOrFail($id)]);
+        return view('edit',   ['question' => \App\Models\Question::findOrFail($id)]);
     })->name('edit');
     Route::get('{id}/delete', function ($id) {
-        return view('delete', ['question' => Question::findOrFail($id)]);
+        return view('delete', ['question' => \App\Models\Question::findOrFail($id)]);
     })->name('delete');
 
     // Actions
