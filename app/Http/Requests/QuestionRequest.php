@@ -14,14 +14,14 @@ class QuestionRequest extends FormRequest
     public function rules()
     {
         return [
-            'question' => 'required|string',
-            'answer'   => 'required|string',
-            'grade'    => 'required|array',
-            'grade.*'  => 'in:PK,K,1,2,3,4,5,6',
-            'subject'  => 'required|string|max:100',
-            'skill'    => 'nullable|string',
-            'source'   => 'nullable|string',
-            'book'     => 'nullable|string'
+            'question' => ['required', 'string'],
+            'answer'   => ['required', 'string'],
+            'grade'    => ['required', 'array'],
+            'grade.*'  => ['in:PK,K,1,2,3,4,5,6'],
+            'subject'  => ['required', 'string', 'max:100'],
+            'skill'    => ['nullable', 'string'],
+            'source'   => ['nullable', 'string'],
+            'book'     => ['nullable', 'string'],
         ];
     }
 }
