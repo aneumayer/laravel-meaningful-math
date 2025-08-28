@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', config('app.name'))</title>
+    <title>{{ $title ? $title . ' - ' . config('app.name') : config('app.name') }}</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap-icons.min.css') }}" rel="stylesheet">
 </head>
+
 <body>
-     <div style="position: absolute; top: 1rem; right: 2rem; z-index: 1000;">
+    <div style="position: absolute; top: 1rem; right: 2rem; z-index: 1000;">
         @auth
             <a href="{{ route('logout') }}" title="Logout">
                 <i class="bi bi-box-arrow-right" style="font-size: 1.5rem; color: white;"></i>
@@ -20,12 +22,24 @@
             </a>
         @endauth
     </div>
-    <div class="container">
-        @yield('content')
+    <div class="container p-4">
+        @if ($title)
+            <h1 class="mb-4">{{ $title }}</h1>
+        @endif
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+        {{ $slot }}
     </div>
 
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 </body>
+
 </html>

@@ -1,133 +1,143 @@
-@extends('app')
+<x-layout title="{{ config('app.name') }}">
+    <form method="GET" action="{{ route('index') }}" class="mb-4">
+        <div class="row mb-2">
+            <div class="col-12 col-md">
+                <input type="text" name="search" class="form-control" placeholder="Search Term ..."
+                    value="{{ request('search') }}">
+            </div>
 
-@section('content')
-<h1>Meaningful Math</h1>
+            <div class="col-12 col-md">
+                <select name="grade" class="form-control">
+                    <option value="">{{ __('Select Grade') }}</option>
+                    @foreach (['PK', 'K', '1', '2', '3', '4', '5', '6'] as $grade)
+                        <option value="{{ $grade }}" {{ request('grade') == $grade ? 'selected' : '' }}>
+                            {{ $grade }}</option>
+                    @endforeach
+                </select>
+            </div>
 
-<form method="GET" action="{{ route('index') }}" class="mb-4">
-    <div class="row mb-2">
-        <div class="col-12 col-md">
-            <input type="text" name="search" class="form-control" placeholder="Search Term ..." value="{{ request('search') }}">
+            <div class="col-12 col-md">
+                <select name="subject" class="form-control">
+                    <option value="">{{ __('Select Subject') }}</option>
+                    @foreach ($subjects as $subject)
+                        <option value="{{ $subject }}" {{ request('subject') == $subject ? 'selected' : '' }}>
+                            {{ $subject }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="col-12 col-md">
+                <select name="skill" class="form-control">
+                    <option value="">{{ __('Select Skill') }}</option>
+                    @foreach ($skills as $skill)
+                        <option value="{{ $skill }}" {{ request('skill') == $skill ? 'selected' : '' }}>
+                            {{ $skill }}</option>
+                    @endforeach
+                </select>
+            </div>
         </div>
-        <div class="col-12 col-md">
-            <select name="grade" class="form-control">
-                <option value="">Select Grade</option>
-                @foreach(['PK','K','1','2','3','4','5','6'] as $grade)
-                    <option value="{{ $grade }}" {{ request('grade') == $grade ? 'selected' : '' }}>{{ $grade }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="col-12 col-md">
-            <select name="subject" class="form-control">
-                <option value="">Select Subject</option>
-                @foreach($subjects as $subject)
-                    <option value="{{ $subject }}" {{ request('subject') == $subject ? 'selected' : '' }}>{{ $subject }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="col-12 col-md">
-            <select name="skill" class="form-control">
-                <option value="">Select Skill</option>
-                @foreach($skills as $skill)
-                    <option value="{{ $skill }}" {{ request('skill') == $skill ? 'selected' : '' }}>{{ $skill }}</option>
-                @endforeach
-            </select>
-        </div>
-    </div>
-    <div class="row justify-content-center mt-3">
-        @auth
-            <div class="col-md-2">
-                <a href="{{ route('create') }}" class="btn btn-success w-100">
-                    <i class="bi bi-plus-circle"></i> Add
-                </a>
-            </div>
-        @endauth
-        <div class="col-md-2">
-            <button type="submit" class="btn btn-primary w-100">
-                <i class="bi bi-search"></i> Search
-            </button>
-        </div>
-        <div class="col-md-2">
-            <a href="{{ route('index') }}" class="btn btn-secondary w-100">
-                <i class="bi bi-x-circle"></i> Clear
-            </a>
-        </div>
-        <div class="col-md-2">
-            <button type="button" class="btn btn-secondary w-100 d-none d-md-block" onclick="window.print()">
-                <i class="bi bi-printer"></i> Print
-            </button>
-        </div>
-    </div>
-</form>
 
-<div id="print-results">
-@foreach($questions as $question)
-    <div class="card mb-4">
-        <div class="card-body">
-            @if(!empty($question->question))
-            <div class="row mb-2">
-                <div class="col-auto font-weight-bold question-label">Question:</div>
-                <div class="col">{{ $question->question }}</div>
-            </div>
-            @endif
-
-            @if(!empty($question->answer))
-            <div class="row mb-2">
-                <div class="col-auto font-weight-bold question-label">Answer:</div>
-                <div class="col">{{ $question->answer }}</div>
-            </div>
-            @endif
-
-            @if(!empty($question->grade))
-            <div class="row mb-2">
-                <div class="col-auto font-weight-bold question-label">Grade:</div>
-                <div class="col">{{ is_array($question->grade) ? implode(', ', $question->grade) : $question->grade }}</div>
-            </div>
-            @endif
-
-            @if(!empty($question->subject))
-            <div class="row mb-2">
-                <div class="col-auto font-weight-bold question-label">Subject:</div>
-                <div class="col">{{ $question->subject }}</div>
-            </div>
-            @endif
-
-            @if(!empty($question->skill))
-            <div class="row mb-2">
-                <div class="col-auto font-weight-bold question-label">Skill:</div>
-                <div class="col">{{ $question->skill }}</div>
-            </div>
-            @endif
-
-            @if(!empty($question->source))
-            <div class="row mb-2">
-                <div class="col-auto font-weight-bold question-label">Source:</div>
-                <div class="col">{{ $question->source }}</div>
-            </div>
-            @endif
-
-            @if(!empty($question->book))
-            <div class="row mb-2">
-                <div class="col-auto font-weight-bold question-label">Read:</div>
-                <div class="col">{{ $question->book }}</div>
-            </div>
-            @endif
-
+        <div class="row justify-content-center mt-3">
             @auth
-                <div class="row text-center mt-3">
-                    <div class="col-12">
-                        <a href="{{ route('edit', $question->id) }}" class="btn btn-warning mx-1">
-                            <i class="bi bi-pencil-square"></i> Edit
-                        </a>
-                        <a href="{{ route('delete', $question->id) }}" class="btn btn-danger mx-1">
-                            <i class="bi bi-trash"></i> Delete
-                        </a>
-                    </div>
+                <div class="col-md-2">
+                    <a href="{{ route('create') }}" class="btn btn-success w-100">
+                        <i class="bi bi-plus-circle"></i> {{ __('Add') }}
+                    </a>
                 </div>
             @endauth
-        </div>
-    </div>
-@endforeach
-</div>
 
-{{ $questions->links() }}
-@endsection
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary w-100">
+                    <i class="bi bi-search"></i> {{ __('Search') }}
+                </button>
+            </div>
+
+            <div class="col-md-2">
+                <a href="{{ route('index') }}" class="btn btn-secondary w-100">
+                    <i class="bi bi-x-circle"></i> {{ __('Clear') }}
+                </a>
+            </div>
+
+            <div class="col-md-2">
+                <button type="button" class="btn btn-secondary w-100 d-none d-md-block" onclick="window.print()">
+                    <i class="bi bi-printer"></i> {{ __('print') }}
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <div id="print-results">
+        @foreach ($questions as $question)
+            <div class="card mb-4">
+                <div class="card-body">
+                    @if (!empty($question->question))
+                        <div class="row mb-2">
+                            <div class="col-auto font-weight-bold question-label">{{ __('Question') }}:</div>
+                            <div class="col">{{ $question->question }}</div>
+                        </div>
+                    @endif
+
+                    @if (!empty($question->answer))
+                        <div class="row mb-2">
+                            <div class="col-auto font-weight-bold question-label">{{ __('Answer') }}:</div>
+                            <div class="col">{{ $question->answer }}</div>
+                        </div>
+                    @endif
+
+                    @if (!empty($question->grade))
+                        <div class="row mb-2">
+                            <div class="col-auto font-weight-bold question-label">{{ __('Grade') }}:</div>
+                            <div class="col">
+                                {{ is_array($question->grade) ? implode(', ', $question->grade) : $question->grade }}
+                            </div>
+                        </div>
+                    @endif
+
+                    @if (!empty($question->subject))
+                        <div class="row mb-2">
+                            <div class="col-auto font-weight-bold question-label">{{ __('Subject') }}:</div>
+                            <div class="col">{{ $question->subject }}</div>
+                        </div>
+                    @endif
+
+                    @if (!empty($question->skill))
+                        <div class="row mb-2">
+                            <div class="col-auto font-weight-bold question-label">{{ __('Skill') }}:</div>
+                            <div class="col">{{ $question->skill }}</div>
+                        </div>
+                    @endif
+
+                    @if (!empty($question->source))
+                        <div class="row mb-2">
+                            <div class="col-auto font-weight-bold question-label">{{ __('Source') }}:</div>
+                            <div class="col">{{ $question->source }}</div>
+                        </div>
+                    @endif
+
+                    @if (!empty($question->book))
+                        <div class="row mb-2">
+                            <div class="col-auto font-weight-bold question-label">{{ __('Read') }}:</div>
+                            <div class="col">{{ $question->book }}</div>
+                        </div>
+                    @endif
+
+                    @auth
+                        <div class="row text-center mt-3">
+                            <div class="col-12">
+                                <a href="{{ route('edit', $question->id) }}" class="btn btn-warning mx-1">
+                                    <i class="bi bi-pencil-square"></i> {{ __('Edit') }}
+                                </a>
+
+                                <a href="{{ route('delete', $question->id) }}" class="btn btn-danger mx-1">
+                                    <i class="bi bi-trash"></i> {{ __('Delete') }}
+                                </a>
+                            </div>
+                        </div>
+                    @endauth
+                </div>
+            </div>
+        @endforeach
+    </div>
+
+    {{ $questions->links() }}
+</x-layout>
