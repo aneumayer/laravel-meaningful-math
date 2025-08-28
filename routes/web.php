@@ -20,12 +20,10 @@ Route::middleware(['role:admin'])->group(function () {
     // Views
     Route::view('create', 'create')->name('create');
     Route::get('{question}/edit', function ($question) {
-        $question = \App\Models\Question::findOrFail($question);
-        return view('edit', compact('question'));
+        return view('edit', ['question' => \App\Models\Question::findOrFail($question)]);
     })->name('edit');
     Route::get('{question}/delete', function ($question) {
-        $question = \App\Models\Question::findOrFail($question);
-        return view('delete', compact('question'));
+        return view('delete', ['question' => \App\Models\Question::findOrFail($question)]);
     })->name('delete');
 
     // Actions
