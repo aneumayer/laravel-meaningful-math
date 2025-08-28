@@ -19,7 +19,7 @@ class MeController extends Controller
         if (!Auth::check()) {
             return response()->json(['error' => 'Unauthorized'], Response::HTTP_UNAUTHORIZED);
         }
-        $me = auth()->user()->load('roles');
+        $me = auth()->user();
         return response()->json($me);
     }
 }
