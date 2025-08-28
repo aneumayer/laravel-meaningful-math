@@ -1,37 +1,43 @@
 <?php
 
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Auth\{
+    LoginController,
+    LogoutController,
+    MeController,
+};
+use App\Http\Controllers\Question\{
+    DestroyController,
+    IndexController,
+    StoreController,
+    UpdateController
+};
+use \App\Models\Question;
 use Illuminate\Support\Facades\Route;
 
-// Routes for user auth
-Route::middleware('guest')->group(function () {
-    Route::get('login', [AuthController::class, 'create'])->name('login');
-    Route::post('login', [AuthController::class, 'store']);
-});
+// Views
+Route::get('/', IndexController::class)->name('index');
 
-Route::middleware('auth')->group(function () {
-    Route::get('logout', [AuthController::class, 'destroy'])->name('logout');
-});
+// Auth
+Route::view('login', 'login')->name('login');
+Route::post('login', LoginController::class);
 
-// API Calls
-Route::get('/',              App\Http\Controllers\IndexController::class  )->name('index');
-// Restricted by auth code
+// Restricted by auth
 Route::middleware(['role:admin'])->group(function () {
     // Views
-    Route::view('create', 'create')->name('create');
-    Route::get('{question}/edit', function ($question) {
-        return view('edit', ['question' => \App\Models\Question::findOrFail($question)]);
+    Route::view('create',     'create')->name('create');
+    Route::get('{id}/edit',   function ($id) {
+        return view('edit',   ['question' => Question::findOrFail($id)]);
     })->name('edit');
-    Route::get('{question}/delete', function ($question) {
-        return view('delete', ['question' => \App\Models\Question::findOrFail($question)]);
+    Route::get('{id}/delete', function ($id) {
+        return view('delete', ['question' => Question::findOrFail($id)]);
     })->name('delete');
 
     // Actions
-    Route::post('',             App\Http\Controllers\StoreController::class  )->name('store');
-    Route::put('{question}',    App\Http\Controllers\UpdateController::class )->name('update');
-    Route::delete('{question}', App\Http\Controllers\DestroyController::class)->name('destroy');
+    Route::post('',             StoreController::class)->name('store');
+    Route::put('{question}',    UpdateController::class)->name('update');
+    Route::delete('{question}', DestroyController::class)->name('destroy');
 
     // Auth
-    Route::get('me', [AuthController::class, 'me']);
+    Route::get('me',     MeController::class)->name('me');
+    Route::get('logout', LogoutController::class)->name('logout');
 });
-

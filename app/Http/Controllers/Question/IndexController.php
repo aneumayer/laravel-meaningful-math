@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Question;
 
 use App\Http\Controllers\Controller;
 use App\Models\Question;
@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
+    /**
+     * Show all the questions
+     *
+     * @param Request $request
+     * @return void
+     */
     public function __invoke(Request $request)
     {
         $query = Question::query();
