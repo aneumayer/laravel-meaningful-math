@@ -20,7 +20,7 @@ php artisan tinker
 ```php
 $user = \App\Models\User::create([
     'name' => 'Admin User',
-    'email' => 'admin@example.com',
+    'username' => 'admin',
     'password' => bcrypt('yourpassword'),
 ]);
 ```
