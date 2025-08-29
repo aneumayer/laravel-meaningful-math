@@ -15,10 +15,10 @@ use App\Models\Question;
 use Illuminate\Support\Facades\Route;
 
 // Views
-Route::get('/', IndexController::class)->name('index');
-
-// Auth
 Route::view('login', 'login')->name('login');
+
+// Actions
+Route::get('',       IndexController::class)->name('index');
 Route::post('login', LoginController::class);
 
 // Restricted by auth
@@ -32,12 +32,12 @@ Route::middleware(['auth'])->group(function () {
         return view('delete', ['question' => $question]);
     })->name('delete');
 
-    // Actions
+    // Question Actions
     Route::post('',             StoreController::class)->name('store');
     Route::put('{question}',    UpdateController::class)->name('update');
     Route::delete('{question}', DestroyController::class)->name('destroy');
 
-    // Auth
+    // Auth Actions
     Route::get('me',     MeController::class)->name('me');
     Route::get('logout', LogoutController::class)->name('logout');
 });
