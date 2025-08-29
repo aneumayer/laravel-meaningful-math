@@ -1,12 +1,12 @@
 <x-layout title="{{ config('app.name') }}">
     <form method="GET" action="{{ route('index') }}" class="mb-4">
-        <div class="row mb-2">
-            <div class="col-12 col-md">
+        <div class="row mb-1">
+            <div class="col-12 col-md my-1">
                 <input type="text" name="search" class="form-control" placeholder="Search Term ..."
                     value="{{ request('search') }}">
             </div>
 
-            <div class="col-12 col-md">
+            <div class="col-12 col-md my-1">
                 <select name="grade" class="form-control">
                     <option value="">{{ __('Select Grade') }}</option>
                     @foreach (['PK', 'K', '1', '2', '3', '4', '5', '6'] as $grade)
@@ -16,7 +16,7 @@
                 </select>
             </div>
 
-            <div class="col-12 col-md">
+            <div class="col-12 col-md my-1">
                 <select name="subject" class="form-control">
                     <option value="">{{ __('Select Subject') }}</option>
                     @foreach ($subjects as $subject)
@@ -26,7 +26,7 @@
                 </select>
             </div>
 
-            <div class="col-12 col-md">
+            <div class="col-12 col-md my-1">
                 <select name="skill" class="form-control">
                     <option value="">{{ __('Select Skill') }}</option>
                     @foreach ($skills as $skill)
@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        <div class="row justify-content-center mt-3">
+        <div class="row justify-content-center mt-1">
             @auth
                 <div class="col-md-2 my-1">
                     <a href="{{ route('create') }}" class="btn btn-success w-100">
@@ -48,7 +48,7 @@
 
             <div class="col-md-2 my-1">
                 <button type="submit" class="btn btn-primary w-100">
-                    <i class="bi bi-search"></i> {{ __('Search') }}
+                    <i class="bi bi-search"></i> {{ __('Find') }}
                 </button>
             </div>
 
