@@ -39,26 +39,26 @@
 
         <div class="row justify-content-center mt-3">
             @auth
-                <div class="col-md-2">
+                <div class="col-md-2 my-1">
                     <a href="{{ route('create') }}" class="btn btn-success w-100">
                         <i class="bi bi-plus-circle"></i> {{ __('Add') }}
                     </a>
                 </div>
             @endauth
 
-            <div class="col-md-2">
+            <div class="col-md-2 my-1">
                 <button type="submit" class="btn btn-primary w-100">
                     <i class="bi bi-search"></i> {{ __('Search') }}
                 </button>
             </div>
 
-            <div class="col-md-2">
+            <div class="col-md-2 my-1">
                 <a href="{{ route('index') }}" class="btn btn-secondary w-100">
                     <i class="bi bi-x-circle"></i> {{ __('Clear') }}
                 </a>
             </div>
 
-            <div class="col-md-2">
+            <div class="col-md-2 my-1">
                 <button type="button" class="btn btn-secondary w-100 d-none d-md-block" onclick="window.print()">
                     <i class="bi bi-printer"></i> {{ __('print') }}
                 </button>
@@ -70,71 +70,58 @@
         @foreach ($questions as $question)
             <div class="card mb-4">
                 <div class="card-body">
-                    @if (!empty($question->question))
-                        <div class="row mb-2">
-                            <div class="col-auto font-weight-bold question-label">{{ __('Question') }}:</div>
-                            <div class="col">{{ $question->question }}</div>
-                        </div>
-                    @endif
+                    <dl class="row">
+                        @if (!empty($question->question))
+                            <dt class="col-sm-3">{{ __('Question') }}:</dt>
+                            <dd class="col-sm-9">{{ $question->question }}</dd>
+                        @endif
 
-                    @if (!empty($question->answer))
-                        <div class="row mb-2">
-                            <div class="col-auto font-weight-bold question-label">{{ __('Answer') }}:</div>
-                            <div class="col">{{ $question->answer }}</div>
-                        </div>
-                    @endif
+                        @if (!empty($question->answer))
+                            <dt class="col-sm-3">{{ __('Answer') }}:</dt>
+                            <dd class="col-sm-9">{{ $question->answer }}</dd>
+                        @endif
 
-                    @if (!empty($question->grade))
-                        <div class="row mb-2">
-                            <div class="col-auto font-weight-bold question-label">{{ __('Grade') }}:</div>
-                            <div class="col">
+                        @if (!empty($question->grade))
+                            <dt class="col-sm-3">{{ __('Grade') }}:</dt>
+                            <dd class="col-sm-9">
                                 {{ is_array($question->grade) ? implode(', ', $question->grade) : $question->grade }}
-                            </div>
-                        </div>
-                    @endif
+                            </dd>
+                        @endif
 
-                    @if (!empty($question->subject))
-                        <div class="row mb-2">
-                            <div class="col-auto font-weight-bold question-label">{{ __('Subject') }}:</div>
-                            <div class="col">{{ $question->subject }}</div>
-                        </div>
-                    @endif
+                        @if (!empty($question->subject))
+                            <dt class="col-sm-3">{{ __('Subject') }}:</dt>
+                            <dd class="col-sm-9">{{ $question->subject }}</dd>
+                        @endif
 
-                    @if (!empty($question->skill))
-                        <div class="row mb-2">
-                            <div class="col-auto font-weight-bold question-label">{{ __('Skill') }}:</div>
-                            <div class="col">{{ $question->skill }}</div>
-                        </div>
-                    @endif
+                        @if (!empty($question->skill))
+                            <dt class="col-sm-3">{{ __('Skill') }}:</dt>
+                            <dd class="col-sm-9">{{ $question->skill }}</dd>
+                        @endif
 
-                    @if (!empty($question->source))
-                        <div class="row mb-2">
-                            <div class="col-auto font-weight-bold question-label">{{ __('Source') }}:</div>
-                            <div class="col">{{ $question->source }}</div>
-                        </div>
-                    @endif
+                        @if (!empty($question->source))
+                            <dt class="col-sm-3">{{ __('Source') }}:</dt>
+                            <dd class="col-sm-9">{{ $question->source }}</dd>
+                        @endif
 
-                    @if (!empty($question->book))
-                        <div class="row mb-2">
-                            <div class="col-auto font-weight-bold question-label">{{ __('Read') }}:</div>
-                            <div class="col">{{ $question->book }}</div>
-                        </div>
-                    @endif
-
+                        @if (!empty($question->book))
+                            <dt class="col-sm-3">{{ __('Read') }}:</dt>
+                            <dd class="col-sm-9">{{ $question->book }}</dd>
+                        @endif
+                    </dl>
                     @auth
-                        <div class="row text-center mt-3">
+                        <div class="row text-center mt-3 print-hidden">
                             <div class="col-12">
-                                <a href="{{ route('edit', $question->id) }}" class="btn btn-warning mx-1">
+                                <a href="{{ route('edit', $question) }}" class="btn btn-warning mx-1">
                                     <i class="bi bi-pencil-square"></i> {{ __('Edit') }}
                                 </a>
 
-                                <a href="{{ route('delete', $question->id) }}" class="btn btn-danger mx-1">
+                                <a href="{{ route('delete', $question) }}" class="btn btn-danger mx-1">
                                     <i class="bi bi-trash"></i> {{ __('Delete') }}
                                 </a>
                             </div>
                         </div>
                     @endauth
-                </div>
+                    </div>
             </div>
         @endforeach
     </div>

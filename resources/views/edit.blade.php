@@ -71,7 +71,7 @@
                 <i class="bi bi-save"></i> {{ __('Update') }}
             </button>
 
-            <a href="{{ route('index') }}?admin" class="btn btn-secondary mx-1">
+            <a href="{{ route('index') }}" class="btn btn-secondary mx-1">
                 <i class="bi bi-x-circle"></i> {{ __('Cancel') }}
             </a>
         </div>

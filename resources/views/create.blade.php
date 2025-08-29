@@ -67,7 +67,7 @@
                 <i class="bi bi-plus-circle"></i> {{ __('Add') }}
             </button>
 
-            <a href="{{ route('index') }}?admin" class="btn btn-secondary mx-1">
+            <a href="{{ route('index') }}" class="btn btn-secondary mx-1">
                 <i class="bi bi-x-circle"></i> {{ __('Cancel') }}
             </a>
         </div>

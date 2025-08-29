@@ -12,7 +12,7 @@
             <i class="bi bi-trash"></i> {{ __('Delete') }}
         </button>
 
-        <a href="{{ route('index') }}?admin" class="btn btn-secondary mx-1">
+        <a href="{{ route('index') }}" class="btn btn-secondary mx-1">
             <i class="bi bi-x-circle"></i> {{ __('Cancel') }}
         </a>
     </form>

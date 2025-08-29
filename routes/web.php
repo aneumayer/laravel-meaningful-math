@@ -11,6 +11,7 @@ use App\Http\Controllers\Question\{
     StoreController,
     UpdateController
 };
+use App\Models\Question;
 use Illuminate\Support\Facades\Route;
 
 // Views
@@ -23,12 +24,12 @@ Route::post('login', LoginController::class);
 // Restricted by auth
 Route::middleware(['auth'])->group(function () {
     // Views
-    Route::view('create',     'create')->name('create');
-    Route::get('{id}/edit',   function ($id) {
-        return view('edit',   ['question' => \App\Models\Question::findOrFail($id)]);
+    Route::view('create', 'create')->name('create');
+    Route::get('{question}/edit', function (Question $question) {
+        return view('edit', ['question' => $question]);
     })->name('edit');
-    Route::get('{id}/delete', function ($id) {
-        return view('delete', ['question' => \App\Models\Question::findOrFail($id)]);
+    Route::get('{question}/delete', function (Question $question) {
+        return view('delete', ['question' => $question]);
     })->name('delete');
 
     // Actions

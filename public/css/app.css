@@ -17,14 +17,16 @@ body {
 }
 
 .btn-primary {
-    background-color: #257abd !important; /* Your custom blue */
+    background-color: #257abd !important;
+    /* Your custom blue */
     border-color: #257abd !important;
 }
 
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active {
-    background-color: #1370b7 !important; /* A darker shade for hover/active */
+    background-color: #1370b7 !important;
+    /* A darker shade for hover/active */
     border-color: #1370b7 !important;
 }
 
@@ -32,9 +34,16 @@ body {
     body * {
         visibility: hidden;
     }
-    #print-results, #print-results * {
+
+    .print-hidden {
+        display: none !important;
+    }
+
+    #print-results,
+    #print-results * {
         visibility: visible;
     }
+
     #print-results {
         position: absolute;
         left: 0;
