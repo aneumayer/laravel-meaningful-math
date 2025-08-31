@@ -1,5 +1,5 @@
 <x-layout title="Edit Question">
-    <form action="{{ route('update', $question->id) }}" method="POST">
+    <form action="{{ route('question.update', $question) }}" method="POST">
         @csrf
         @method('PUT')
 

@@ -1,5 +1,5 @@
 <x-layout title="Add Question">
-    <form action="{{ route('store') }}" method="POST">
+    <form action="{{ route('question.store') }}" method="POST">
         @csrf
         @method('POST')
 

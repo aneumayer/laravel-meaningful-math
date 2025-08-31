@@ -4,7 +4,7 @@
         <strong>{{ $question->question }}</strong>?
     </div>
 
-    <form action="{{ route('destroy', $question->id) }}" method="POST" class="text-center">
+    <form action="{{ route('question.destroy', $question) }}" method="POST" class="text-center">
         @csrf
         @method('DELETE')
 

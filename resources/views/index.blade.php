@@ -40,7 +40,7 @@
         <div class="row justify-content-center mt-1">
             @auth
                 <div class="col-md-2 my-1">
-                    <a href="{{ route('create') }}" class="btn btn-success w-100">
+                    <a href="{{ route('question.create') }}" class="btn btn-success w-100">
                         <i class="bi bi-plus-circle"></i> {{ __('Add') }}
                     </a>
                 </div>
@@ -111,20 +111,21 @@
                     @auth
                         <div class="row text-center mt-3 print-hidden">
                             <div class="col-12">
-                                <a href="{{ route('edit', $question) }}" class="btn btn-warning mx-1">
+                                <a href="{{ route('question.edit', $question) }}" class="btn btn-warning mx-1">
                                     <i class="bi bi-pencil-square"></i> {{ __('Edit') }}
                                 </a>
 
-                                <a href="{{ route('delete', $question) }}" class="btn btn-danger mx-1">
+                                <a href="{{ route('question.delete', $question) }}" class="btn btn-danger mx-1">
                                     <i class="bi bi-trash"></i> {{ __('Delete') }}
                                 </a>
                             </div>
                         </div>
                     @endauth
-                    </div>
+                </div>
             </div>
         @endforeach
     </div>
 
     {{ $questions->links() }}
+
 </x-layout>
