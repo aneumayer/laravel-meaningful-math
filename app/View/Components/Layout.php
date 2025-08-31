@@ -8,15 +8,10 @@ use Illuminate\View\Component;
 
 class Layout extends Component
 {
-    public $title;
-
     /**
      * Create a new component instance.
      */
-    public function __construct(string $title = null)
-    {
-        $this->title = $title;
-    }
+    public function __construct(public ?string $title) {}
 
     /**
      * Get the view / contents that represent the component.

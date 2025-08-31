@@ -3,7 +3,7 @@
         @csrf
         @method('PUT')
         
-        <x-fields :question="$question">
+        <x-fields :$question>
             <button type="submit" class="btn btn-primary mx-1">
                 <i class="bi bi-save"></i> {{ __('Update') }}
             </button>

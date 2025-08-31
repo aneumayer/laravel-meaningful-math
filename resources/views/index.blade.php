@@ -33,7 +33,7 @@
 
     <div id="print-results">
         @foreach ($questions as $question)
-            <x-question :question="$question">
+            <x-display :$question>
                 @auth
                     <div class="row text-center mt-3 print-hidden">
                         <div class="col-12">
@@ -47,7 +47,7 @@
                         </div>
                     </div>
                 @endauth
-            </x-question>
+            </x-display>
         @endforeach
     </div>
 

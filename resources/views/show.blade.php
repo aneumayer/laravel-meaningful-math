@@ -1,3 +1,3 @@
 <x-layout>
-    <x-question :question="$question" />
+    <x-display :$question />
 </x-layout>
