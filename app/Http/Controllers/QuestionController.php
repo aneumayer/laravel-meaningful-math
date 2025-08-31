@@ -47,12 +47,8 @@ class QuestionController extends Controller implements HasMiddleware
         }
 
         $questions = $query->paginate(config('services.math.per_page'));
-        
-        // Get unique subjects and skills for dropdowns
-        $subjects = Question::whereNotNull('subject')->distinct()->orderBy('subject', 'asc')->pluck('subject');
-        $skills   = Question::whereNotNull('skill')->distinct()->orderBy('skill', 'asc')->pluck('skill');
 
-        return view('index', compact('questions', 'subjects', 'skills'));
+        return view('index', compact('questions'));
     }
 
     /**
