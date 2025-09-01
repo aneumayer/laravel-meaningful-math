@@ -1,3 +1,5 @@
+@props(['question'])
+
 <div class="card mb-4">
     <div class="card-body">
         <dl class="row">

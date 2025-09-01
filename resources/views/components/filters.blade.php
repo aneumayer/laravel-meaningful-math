@@ -1,3 +1,11 @@
+@php
+    use App\Models\Question;
+    $subjects = Question::whereNotNull('subject')
+            ->distinct()->orderBy('subject')->pluck('subject');
+    $skills   = Question::whereNotNull('skill')
+            ->distinct()->orderBy('skill')->pluck('skill');
+@endphp
+
 <div class="row mb-1">
     <div class="col-12 col-md my-1">
         <input type="text" name="search" class="form-control" placeholder="Search Term ..."
