@@ -1,7 +1,6 @@
 <x-layout title="Add Question">
     <form action="{{ route('question.store') }}" method="POST">
         @csrf
-        @method('POST')
 
         <x-fields>
             <button type="submit" class="btn btn-success mx-1">

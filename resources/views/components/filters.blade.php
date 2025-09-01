@@ -1,10 +1,4 @@
-@php
-    use App\Models\Question;
-    $subjects = Question::whereNotNull('subject')
-            ->distinct()->orderBy('subject')->pluck('subject');
-    $skills   = Question::whereNotNull('skill')
-            ->distinct()->orderBy('skill')->pluck('skill');
-@endphp
+@use('App\Models\Question')
 
 <div class="row mb-1">
     <div class="col-12 col-md my-1">
@@ -25,7 +19,7 @@
     <div class="col-12 col-md my-1">
         <select name="subject" class="form-control">
             <option value="">{{ __('Select Subject') }}</option>
-            @foreach ($subjects as $subject)
+            @foreach (Question::whereNotNull('subject')->distinct()->orderBy('subject')->pluck('subject') as $subject)
                 <option value="{{ $subject }}" {{ request('subject') == $subject ? 'selected' : '' }}>
                     {{ $subject }}</option>
             @endforeach
@@ -35,7 +29,7 @@
     <div class="col-12 col-md my-1">
         <select name="skill" class="form-control">
             <option value="">{{ __('Select Skill') }}</option>
-            @foreach ($skills as $skill)
+            @foreach (Question::whereNotNull('skill')->distinct()->orderBy('skill')->pluck('skill') as $skill)
                 <option value="{{ $skill }}" {{ request('skill') == $skill ? 'selected' : '' }}>
                     {{ $skill }}</option>
             @endforeach
