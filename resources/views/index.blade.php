@@ -18,7 +18,7 @@
             </div>
 
             <div class="col-md-2 my-1">
-                <a href="{{ route('index') }}" class="btn btn-secondary w-100">
+                <a href="{{ route('index', ['clear' => 1]) }}" class="btn btn-secondary w-100">
                     <i class="bi bi-x-circle"></i> {{ __('Clear') }}
                 </a>
             </div>

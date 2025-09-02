@@ -24,18 +24,33 @@ class QuestionController extends Controller implements HasMiddleware
      */
     public function index(Request $request)
     {
+        $keys = ['search', 'grade', 'subject', 'skill'];
+
+        // If request has any filter inputs, save them to session
+        if ($request->hasAny($keys)) {
+            session(['questions_filters' => $request->only($keys)]);
+        }
+
+        // If no filters in request, load saved filters (if any) and merge into request
+        if (
+            !$request->hasAny($keys) && session()->has('questions_filters')
+            && !$request->has('clear') // Clear if requested
+        ) {
+            $saved = session('questions_filters', []);
+            $request->merge($saved);
+        }
+
         $query = Question::query();
 
         if ($request->filled('search')) {
-            $query->where(function($q) use ($request) {
+            $query->where(function ($q) use ($request) {
                 $q->where('question', 'like', '%' . $request->search . '%')
-                  ->orWhere('answer', 'like', '%' . $request->search . '%')
-                  ->orWhere('source', 'like', '%' . $request->search . '%')
-                  ->orWhere('book', 'like', '%' . $request->search . '%');
+                    ->orWhere('answer', 'like', '%' . $request->search . '%')
+                    ->orWhere('source', 'like', '%' . $request->search . '%')
+                    ->orWhere('book', 'like', '%' . $request->search . '%');
             });
         }
 
-        // Filters
         if ($request->filled('grade')) {
             $query->whereJsonContains('grade', $request->grade);
         }
@@ -46,10 +61,12 @@ class QuestionController extends Controller implements HasMiddleware
             $query->where('skill', $request->skill);
         }
 
-        $questions = $query->paginate(config('services.math.per_page'));
+        $questions = $query->paginate(config('services.math.per_page'))
+            ->appends($request->only($keys));
 
         return view('index', compact('questions'));
     }
+
 
     /**
      * Show the form for creating a new resource.
