@@ -15,9 +15,16 @@ class CreateUserCommand extends Command
 
     public function handle()
     {
-        $name          = text('Enter the name of the admin user');
-        $username      = text('Enter the username');
+        $name     = text('Enter the name of the admin user');
+        $username = text('Enter the username');
+
         $plainPassword = password('Enter the password');
+        $confirmPassword = password('Confirm the password');
+
+        if ($plainPassword !== $confirmPassword) {
+            $this->error('Passwords do not match. Please try again.');
+            return;
+        }
 
         $confirm = confirm("Create user with username '{$username}'?");
 
