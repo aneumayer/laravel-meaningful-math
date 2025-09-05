@@ -14,13 +14,5 @@ php artisan migrate
 Create a new admin user with a password:
 
 ```shell
-php artisan tinker
-```
-
-```php
-$user = \App\Models\User::create([
-    'name' => 'Admin User',
-    'username' => 'admin',
-    'password' => bcrypt('yourpassword'),
-]);
+php artisan user:create
 ```
